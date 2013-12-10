@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate,UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
