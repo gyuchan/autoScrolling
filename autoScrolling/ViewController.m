@@ -142,9 +142,9 @@
 //    NSLog(@" %.2fg",acceleration.y);
 //    NSLog(@" %.2f",_scrollView.contentOffset.y);
     if (_scrollView.contentOffset.y >= webtoonSize.height - [[UIScreen mainScreen] bounds].size.width ||_scrollView.contentOffset.y < 0) return;
-    float gravity = acceleration.y+(30./90.);
+    float gravity = acceleration.y+(40./90.);
     if(gravity <= -0.3) gravity = -0.3;
-    CGPoint scrollPoint = CGPointMake(_scrollView.frame.origin.x, _scrollView.contentOffset.y + (-1 * gravity * 75));
+    CGPoint scrollPoint = CGPointMake(_scrollView.frame.origin.x, _scrollView.contentOffset.y + (-1 * gravity * 85));
     [_scrollView setContentOffset:scrollPoint animated:YES];
 }
 
