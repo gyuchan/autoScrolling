@@ -23,11 +23,22 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="uDa-Vb-KhG"/>
                                 </connections>
                             </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-2b-9fG">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="sOw-0Z-4Ca"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZFk-gM-iOy" firstAttribute="top" secondItem="n1H-2b-9fG" secondAttribute="bottom" id="leQ-DR-FKQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Q0-dd-G7U"/>
                     <connections>
+                        <outlet property="customToolbar" destination="n1H-2b-9fG" id="0xj-7X-w1H"/>
                         <outlet property="scrollView" destination="u8o-Y0-Nwa" id="tqc-Du-eK0"/>
                     </connections>
                 </viewController>

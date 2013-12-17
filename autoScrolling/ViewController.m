@@ -19,6 +19,7 @@
 }
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (weak, nonatomic) IBOutlet UIToolbar *customToolbar;
 
 @end
 
@@ -50,7 +51,7 @@
     //TapGesture event 설정하기
     UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(handleSingleTap:)];
-    [self.view addGestureRecognizer:singleFingerTap];
+    [self.scrollView addGestureRecognizer:singleFingerTap];
     
     
     //auto scrolling 초기화
@@ -159,19 +160,29 @@
         frame.origin.y = -frame.size.height;
         self.navigationController.navigationBar.frame = frame;
         
+        CGRect toolbarFrame = self.customToolbar.frame;
+        toolbarFrame.origin.y = [[UIScreen mainScreen]bounds].size.height+toolbarFrame.size.height;
+        self.customToolbar.frame = toolbarFrame;
+        
+        
         // Display it nicely
         self.navigationController.navigationBar.hidden = NO;
         frame.origin.y = 0.0;
         [self.view bringSubviewToFront:self.navigationController.navigationBar];
         
+        self.customToolbar.hidden = NO;
+        toolbarFrame.origin.y =[[UIScreen mainScreen]bounds].size.height-toolbarFrame.size.height;
+        [self.view bringSubviewToFront:self.customToolbar];
         
         [UIView animateWithDuration:MENUOPENDURATION
                          animations:^(void) {
                              self.navigationController.navigationBar.frame = frame;
+                             self.customToolbar.frame = toolbarFrame;
                          }
                          completion:^(BOOL finished) {
                              [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                                      withAnimation:UIStatusBarAnimationSlide];
+                             NSLog(@"%f,%f",self.customToolbar.frame.origin.x,self.customToolbar.frame.origin.y);
 //                             [self.navigationController setNavigationBarHidden: NO animated:YES];
                          }
          ];
@@ -181,18 +192,25 @@
     else if (show == NO && self.navigationController.navigationBar.hidden == NO) {
         
         CGRect frame = self.navigationController.navigationBar.frame;
+        CGRect toolbarFrame = self.customToolbar.frame;
         
         // Display it nicely
         frame.origin.y = -frame.size.height-statusBarFrame.size.height;
         [self.view bringSubviewToFront:self.navigationController.navigationBar];
 //        [self.navigationController setNavigationBarHidden: YES animated:YES];
+        
+        toolbarFrame.origin.y = [[UIScreen mainScreen]bounds].size.height+toolbarFrame.size.height;
+        [self.view bringSubviewToFront:self.customToolbar];
+        
         [UIView animateWithDuration:MENUCLOSEDURATION
                          animations:^(void) {
                              self.navigationController.navigationBar.frame = frame;
-                             
+                             self.customToolbar.frame = toolbarFrame;
                          }
                          completion:^(BOOL finished) {
                              self.navigationController.navigationBar.hidden = YES;
+                             self.customToolbar.hidden = YES;
+                             NSLog(@"%f,%f",self.customToolbar.frame.origin.x,self.customToolbar.frame.origin.y);
                              [[UIApplication sharedApplication] setStatusBarHidden:YES
                                                                      withAnimation:UIStatusBarAnimationSlide];
                          }
@@ -204,7 +222,6 @@
 #pragma mark - scrollView
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
     switch (scrollView.scrollDirectionY) {
         case ScrollDirectionDown:
             NSLog(@"맨 위에 도착");
