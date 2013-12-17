@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "UIScrollView+UIScrollViewScrollingDirection.h"
 
-#define MENUOPENDURATION 0.4
+#define MENUOPENDURATION 0.2
 #define MENUCLOSEDURATION 0.2
 
 @interface ViewController (){
@@ -161,17 +161,17 @@
         
         // Display it nicely
         self.navigationController.navigationBar.hidden = NO;
-        frame.origin.y = 0.0+frame.size.height;
+        frame.origin.y = 0.0;
         [self.view bringSubviewToFront:self.navigationController.navigationBar];
         
-        [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                                withAnimation:UIStatusBarAnimationSlide];
+        
         [UIView animateWithDuration:MENUOPENDURATION
                          animations:^(void) {
                              self.navigationController.navigationBar.frame = frame;
                          }
                          completion:^(BOOL finished) {
-                             self.navigationController.navigationBar.hidden = NO;
+                             [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                     withAnimation:UIStatusBarAnimationSlide];
 //                             [self.navigationController setNavigationBarHidden: NO animated:YES];
                          }
          ];
