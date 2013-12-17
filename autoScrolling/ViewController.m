@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (weak, nonatomic) IBOutlet UIToolbar *customToolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *toolbarButton1;
 
 @end
 
@@ -46,7 +47,18 @@
     [container addSubview:button2];
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:container];
     self.navigationItem.rightBarButtonItem = item;
+    [self.navigationController.navigationBar setTranslucent:YES];
 
+    
+    //toolbar Button
+    [_toolbarButton1 setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}
+                                   forState:UIControlStateNormal];
+    [_toolbarButton1 setAction:@selector(toolbarButton1Action)];
+    
+    //customToolbar Setting
+    [_customToolbar setTranslucent:YES];
+    
+    
     
     //TapGesture event 설정하기
     UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self
@@ -113,11 +125,14 @@
     return CGSizeMake(newWidth, newHeight);
 }
 
+
+#pragma mark - motionScrolling
+
 -(void)autoScrolling{
     autoScroll = (autoScroll == true) ? false : true;
     if(autoScroll){
         [self showNavigationBar:NO];
-        _motionManager.accelerometerUpdateInterval = .1;
+        _motionManager.accelerometerUpdateInterval = .2;
         [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
                                              withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
                                                  [self outputAccelertionData:accelerometerData.acceleration];
@@ -131,24 +146,36 @@
         [_motionManager stopAccelerometerUpdates];
     }
 }
+
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
 //    NSLog(@" %.2fg",acceleration.y);
 //    NSLog(@" %.2f",_scrollView.contentOffset.y);
     NSLog(@"%f",_scrollView.contentOffset.y);
-    float gravity = acceleration.y+(40./90.);
-    if(gravity <= -0.3) gravity = -0.3;
+    float gravity = acceleration.y+(35./90.);
+    if(gravity <= -0.4) gravity = -0.4;
     
-    if (_scrollView.contentOffset.y >= webtoonSize.height - ([[UIScreen mainScreen] bounds].size.height+ (-1 * gravity * 85))){
+    if (_scrollView.contentOffset.y >= webtoonSize.height - ([[UIScreen mainScreen] bounds].size.height+ (-1 * gravity * 95))){
         [_motionManager stopAccelerometerUpdates];
         autoScroll = false;
     }
     if (_scrollView.contentOffset.y < -self.navigationController.navigationBar.frame.size.height-[[UIApplication sharedApplication]statusBarFrame].size.height)return;
     
-    CGPoint scrollPoint = CGPointMake(_scrollView.frame.origin.x, _scrollView.contentOffset.y + (-1 * gravity * 85));
-    [_scrollView setContentOffset:scrollPoint animated:YES];
+    CGPoint scrollPoint = CGPointMake(_scrollView.frame.origin.x, _scrollView.contentOffset.y + (-1 * gravity * 95));
+//    [_scrollView setContentOffset:scrollPoint animated:YES];
+    [self scrollToPage:scrollPoint];
 }
 
+- (void)scrollToPage:(CGPoint)scrollPoint
+{
+    CGPoint offset = scrollPoint;
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         [_scrollView setContentOffset:offset animated:NO];
+                     } completion:nil];
+}
 
 - (void)showNavigationBar:(BOOL)show
 {
@@ -182,8 +209,6 @@
                          completion:^(BOOL finished) {
                              [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                                      withAnimation:UIStatusBarAnimationSlide];
-                             NSLog(@"%f,%f",self.customToolbar.frame.origin.x,self.customToolbar.frame.origin.y);
-//                             [self.navigationController setNavigationBarHidden: NO animated:YES];
                          }
          ];
 
@@ -197,10 +222,8 @@
         // Display it nicely
         frame.origin.y = -frame.size.height-statusBarFrame.size.height;
         [self.view bringSubviewToFront:self.navigationController.navigationBar];
-//        [self.navigationController setNavigationBarHidden: YES animated:YES];
         
         toolbarFrame.origin.y = [[UIScreen mainScreen]bounds].size.height+toolbarFrame.size.height;
-        [self.view bringSubviewToFront:self.customToolbar];
         
         [UIView animateWithDuration:MENUCLOSEDURATION
                          animations:^(void) {
@@ -210,7 +233,8 @@
                          completion:^(BOOL finished) {
                              self.navigationController.navigationBar.hidden = YES;
                              self.customToolbar.hidden = YES;
-                             NSLog(@"%f,%f",self.customToolbar.frame.origin.x,self.customToolbar.frame.origin.y);
+                             [self.view bringSubviewToFront:self.customToolbar];
+
                              [[UIApplication sharedApplication] setStatusBarHidden:YES
                                                                      withAnimation:UIStatusBarAnimationSlide];
                          }
@@ -250,4 +274,9 @@
     }
 }
 
+#pragma mark - toolbarButtonAction
+
+- (void)toolbarButton1Action{
+    NSLog(@"1");
+}
 @end
