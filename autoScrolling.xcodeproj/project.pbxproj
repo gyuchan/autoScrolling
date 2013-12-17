@@ -23,6 +23,8 @@
 		411D37F818569473000F0B31 /* autoScrollingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 411D37F718569473000F0B31 /* autoScrollingTests.m */; };
 		411D380318569511000F0B31 /* webtoon_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 411D380218569511000F0B31 /* webtoon_sample.jpg */; };
 		411D38051856B1BC000F0B31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D38041856B1BC000F0B31 /* CoreMotion.framework */; };
+		4121A0E1185FEE0A00211654 /* scrollButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4121A0E0185FEE0A00211654 /* scrollButton@2x.png */; };
+		4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,9 @@
 		411D37F718569473000F0B31 /* autoScrollingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = autoScrollingTests.m; sourceTree = "<group>"; };
 		411D380218569511000F0B31 /* webtoon_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = webtoon_sample.jpg; path = autoScrolling/image/webtoon_sample.jpg; sourceTree = "<group>"; };
 		411D38041856B1BC000F0B31 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		4121A0E0185FEE0A00211654 /* scrollButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scrollButton@2x.png"; path = "autoScrolling/image/scrollButton@2x.png"; sourceTree = "<group>"; };
+		4121A0E31860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+UIScrollViewScrollingDirection.h"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.h"; sourceTree = "<group>"; };
+		4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+UIScrollViewScrollingDirection.m"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +124,7 @@
 		411D37D218569473000F0B31 /* autoScrolling */ = {
 			isa = PBXGroup;
 			children = (
+				4121A0E21860315100211654 /* ScrollViewDirection */,
 				411D37DB18569473000F0B31 /* AppDelegate.h */,
 				411D37DC18569473000F0B31 /* AppDelegate.m */,
 				411D37DE18569473000F0B31 /* Main.storyboard */,
@@ -162,9 +168,19 @@
 		411D3801185694FB000F0B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4121A0E0185FEE0A00211654 /* scrollButton@2x.png */,
 				411D380218569511000F0B31 /* webtoon_sample.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		4121A0E21860315100211654 /* ScrollViewDirection */ = {
+			isa = PBXGroup;
+			children = (
+				4121A0E31860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.h */,
+				4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */,
+			);
+			name = ScrollViewDirection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +262,7 @@
 				411D380318569511000F0B31 /* webtoon_sample.jpg in Resources */,
 				411D37E518569473000F0B31 /* Images.xcassets in Resources */,
 				411D37D718569473000F0B31 /* InfoPlist.strings in Resources */,
+				4121A0E1185FEE0A00211654 /* scrollButton@2x.png in Resources */,
 				411D37E018569473000F0B31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				411D37E318569473000F0B31 /* ViewController.m in Sources */,
+				4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
 				411D37DD18569473000F0B31 /* AppDelegate.m in Sources */,
 				411D37D918569473000F0B31 /* main.m in Sources */,
 			);
@@ -476,6 +494,7 @@
 				411D37FD18569473000F0B31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		411D37FE18569473000F0B31 /* Build configuration list for PBXNativeTarget "autoScrollingTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +503,7 @@
 				411D380018569473000F0B31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
