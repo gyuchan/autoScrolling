@@ -34,6 +34,10 @@
     naviShow = true;
     autoScroll = false;
     
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
+    
     //Navigation Bar Custom Button
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 124, 44)];
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -72,6 +76,7 @@
     _motionManager = [[CMMotionManager alloc] init];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenheight = screenRect.size.height;
     
     UIImage *webtoonImage = [UIImage imageNamed:@"webtoon_sample.jpg"];
     UIImageView *_webToonImageView = [[UIImageView alloc]initWithImage:webtoonImage];
@@ -82,6 +87,7 @@
     [_webToonImageView setContentMode:UIViewContentModeScaleAspectFit];
     
     //웹툰의 원본 이미지사이즈 크기를 device에 width에 맞춰 리사이징값 구하기.
+    [_scrollView setFrame:CGRectMake(0.0, 0.0, screenWidth, screenheight)];
     [_scrollView setContentSize:webtoonSize];
     [_scrollView addSubview:_webToonImageView];
     [_scrollView setDecelerationRate:0.01];
