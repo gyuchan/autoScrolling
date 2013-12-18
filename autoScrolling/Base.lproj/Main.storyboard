@@ -16,24 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8o-Y0-Nwa">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8o-Y0-Nwa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="uDa-Vb-KhG"/>
                                 </connections>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-2b-9fG">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-2b-9fG">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="sOw-0Z-4Ca"/>
+                                    <barButtonItem image="collection.png" width="63" id="sOw-0Z-4Ca"/>
+                                    <barButtonItem image="comment.png" width="63" id="wxd-tp-KZN"/>
+                                    <barButtonItem image="back.png" width="63" id="hyu-mF-m3C"/>
+                                    <barButtonItem image="forward.png" width="63" id="Gqf-yJ-yyw"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="trailing" secondItem="n1H-2b-9fG" secondAttribute="trailing" id="Abd-bQ-sOu"/>
+                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="leading" secondItem="n1H-2b-9fG" secondAttribute="leading" id="G5M-cw-sTz"/>
+                            <constraint firstAttribute="trailing" secondItem="u8o-Y0-Nwa" secondAttribute="trailing" id="W5H-Wx-9ua"/>
                             <constraint firstItem="ZFk-gM-iOy" firstAttribute="top" secondItem="u8o-Y0-Nwa" secondAttribute="bottom" id="cic-3l-SLV"/>
+                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="d1J-x9-CFt"/>
                             <constraint firstItem="u8o-Y0-Nwa" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="g74-3J-GAh"/>
                             <constraint firstItem="ZFk-gM-iOy" firstAttribute="top" secondItem="n1H-2b-9fG" secondAttribute="bottom" id="leQ-DR-FKQ"/>
                         </constraints>
@@ -65,6 +72,12 @@
             <point key="canvasLocation" x="238" y="300"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back.png" width="44" height="44"/>
+        <image name="collection.png" width="44" height="44"/>
+        <image name="comment.png" width="44" height="44"/>
+        <image name="forward.png" width="44" height="44"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

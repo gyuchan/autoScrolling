@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410A288318612F0B00A287E4 /* collection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A288218612F0B00A287E4 /* collection@2x.png */; };
+		410A28851861303500A287E4 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A28841861303500A287E4 /* comment@2x.png */; };
+		410A28871861371D00A287E4 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A28861861371D00A287E4 /* forward@2x.png */; };
+		410A2889186137DD00A287E4 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A2888186137DD00A287E4 /* back@2x.png */; };
+		410A288B1861395D00A287E4 /* music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A288A1861395D00A287E4 /* music@2x.png */; };
+		410A288E1861422000A287E4 /* musicOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A288C1861422000A287E4 /* musicOff@2x.png */; };
+		410A288F1861422000A287E4 /* musicOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A288D1861422000A287E4 /* musicOn@2x.png */; };
 		411D37CD18569473000F0B31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D37CC18569473000F0B31 /* Foundation.framework */; };
 		411D37CF18569473000F0B31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D37CE18569473000F0B31 /* CoreGraphics.framework */; };
 		411D37D118569473000F0B31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D37D018569473000F0B31 /* UIKit.framework */; };
@@ -38,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		410A288218612F0B00A287E4 /* collection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collection@2x.png"; path = "autoScrolling/image/collection@2x.png"; sourceTree = "<group>"; };
+		410A28841861303500A287E4 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "comment@2x.png"; path = "autoScrolling/image/comment@2x.png"; sourceTree = "<group>"; };
+		410A28861861371D00A287E4 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forward@2x.png"; path = "autoScrolling/image/forward@2x.png"; sourceTree = "<group>"; };
+		410A2888186137DD00A287E4 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "autoScrolling/image/back@2x.png"; sourceTree = "<group>"; };
+		410A288A1861395D00A287E4 /* music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "music@2x.png"; path = "autoScrolling/image/music@2x.png"; sourceTree = "<group>"; };
+		410A288C1861422000A287E4 /* musicOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "musicOff@2x.png"; path = "autoScrolling/image/musicOff@2x.png"; sourceTree = "<group>"; };
+		410A288D1861422000A287E4 /* musicOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "musicOn@2x.png"; path = "autoScrolling/image/musicOn@2x.png"; sourceTree = "<group>"; };
 		411D37C918569473000F0B31 /* autoScrolling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autoScrolling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411D37CC18569473000F0B31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		411D37CE18569473000F0B31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,6 +182,13 @@
 		411D3801185694FB000F0B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				410A288C1861422000A287E4 /* musicOff@2x.png */,
+				410A288D1861422000A287E4 /* musicOn@2x.png */,
+				410A288A1861395D00A287E4 /* music@2x.png */,
+				410A2888186137DD00A287E4 /* back@2x.png */,
+				410A28861861371D00A287E4 /* forward@2x.png */,
+				410A28841861303500A287E4 /* comment@2x.png */,
+				410A288218612F0B00A287E4 /* collection@2x.png */,
 				4121A0E0185FEE0A00211654 /* scrollButton@2x.png */,
 				411D380218569511000F0B31 /* webtoon_sample.jpg */,
 			);
@@ -259,9 +280,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410A28871861371D00A287E4 /* forward@2x.png in Resources */,
+				410A288318612F0B00A287E4 /* collection@2x.png in Resources */,
+				410A28851861303500A287E4 /* comment@2x.png in Resources */,
 				411D380318569511000F0B31 /* webtoon_sample.jpg in Resources */,
+				410A288B1861395D00A287E4 /* music@2x.png in Resources */,
+				410A288F1861422000A287E4 /* musicOn@2x.png in Resources */,
 				411D37E518569473000F0B31 /* Images.xcassets in Resources */,
+				410A2889186137DD00A287E4 /* back@2x.png in Resources */,
 				411D37D718569473000F0B31 /* InfoPlist.strings in Resources */,
+				410A288E1861422000A287E4 /* musicOff@2x.png in Resources */,
 				4121A0E1185FEE0A00211654 /* scrollButton@2x.png in Resources */,
 				411D37E018569473000F0B31 /* Main.storyboard in Resources */,
 			);

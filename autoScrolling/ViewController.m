@@ -35,9 +35,11 @@
     //Navigation Bar Custom Button
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 124, 44)];
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setFrame:CGRectMake(0, 0, 44, 44)];
-    [button1 setTitle:@"검색" forState:UIControlStateNormal];
+    [button1 setFrame:CGRectMake(4, 4, 36, 36)];
+    [button1 setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+//    [button1 setBackgroundImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
     [button1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+//    [button1 setEnabled:NO];
     [container addSubview:button1];
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button2 setFrame:CGRectMake(44, 0, 80, 44)];
@@ -48,11 +50,13 @@
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:container];
     self.navigationItem.rightBarButtonItem = item;
     [self.navigationController.navigationBar setTranslucent:YES];
-
+    self.navigationController.navigationBar.tintColor = [UIColor redColor];
     
     //toolbar Button
-    [_toolbarButton1 setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}
-                                   forState:UIControlStateNormal];
+
+//    [_toolbarButton1 setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}
+//                                   forState:UIControlStateNormal];
+
     [_toolbarButton1 setAction:@selector(toolbarButton1Action)];
     
     //customToolbar Setting
@@ -159,7 +163,10 @@
         [_motionManager stopAccelerometerUpdates];
         autoScroll = false;
     }
-    if (_scrollView.contentOffset.y < -self.navigationController.navigationBar.frame.size.height-[[UIApplication sharedApplication]statusBarFrame].size.height)return;
+    if (_scrollView.contentOffset.y < -self.navigationController.navigationBar.frame.size.height-[[UIApplication sharedApplication]statusBarFrame].size.height){
+        [_motionManager stopAccelerometerUpdates];
+        autoScroll = false;
+    }
     
     CGPoint scrollPoint = CGPointMake(_scrollView.frame.origin.x, _scrollView.contentOffset.y + (-1 * gravity * 95));
 //    [_scrollView setContentOffset:scrollPoint animated:YES];
@@ -179,7 +186,7 @@
 
 - (void)showNavigationBar:(BOOL)show
 {
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+//    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
     if (show == YES && self.navigationController.navigationBar.hidden == YES) {
         
         // Move the frame out of sight
@@ -201,12 +208,16 @@
         toolbarFrame.origin.y =[[UIScreen mainScreen]bounds].size.height-toolbarFrame.size.height;
         [self.view bringSubviewToFront:self.customToolbar];
         
+//        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//        [self.navigationController setNavigationBarHidden:NO];
+        
         [UIView animateWithDuration:MENUOPENDURATION
                          animations:^(void) {
                              self.navigationController.navigationBar.frame = frame;
                              self.customToolbar.frame = toolbarFrame;
                          }
                          completion:^(BOOL finished) {
+                             
                              [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                                      withAnimation:UIStatusBarAnimationSlide];
                          }
@@ -220,11 +231,12 @@
         CGRect toolbarFrame = self.customToolbar.frame;
         
         // Display it nicely
-        frame.origin.y = -frame.size.height-statusBarFrame.size.height;
+        frame.origin.y = -frame.size.height;
         [self.view bringSubviewToFront:self.navigationController.navigationBar];
         
         toolbarFrame.origin.y = [[UIScreen mainScreen]bounds].size.height+toolbarFrame.size.height;
         
+//        [self.navigationController setNavigationBarHidden:YES animated:YES];
         [UIView animateWithDuration:MENUCLOSEDURATION
                          animations:^(void) {
                              self.navigationController.navigationBar.frame = frame;
@@ -233,8 +245,7 @@
                          completion:^(BOOL finished) {
                              self.navigationController.navigationBar.hidden = YES;
                              self.customToolbar.hidden = YES;
-                             [self.view bringSubviewToFront:self.customToolbar];
-
+                             
                              [[UIApplication sharedApplication] setStatusBarHidden:YES
                                                                      withAnimation:UIStatusBarAnimationSlide];
                          }
