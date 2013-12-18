@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="c9E-Tm-0db">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c9E-Tm-0db">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -8,45 +9,45 @@
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nm0-0Z-bla"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZFk-gM-iOy"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8o-Y0-Nwa">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" id="u8o-Y0-Nwa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="uDa-Vb-KhG"/>
                                 </connections>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-2b-9fG">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" id="LuU-cJ-vJn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="HvQ-Tu-bjy"/>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="n1H-2b-9fG">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem image="collection.png" width="63" id="sOw-0Z-4Ca"/>
-                                    <barButtonItem image="comment.png" width="63" id="wxd-tp-KZN"/>
-                                    <barButtonItem image="back.png" width="63" id="hyu-mF-m3C"/>
-                                    <barButtonItem image="forward.png" width="63" id="Gqf-yJ-yyw"/>
+                                    <barButtonItem image="collection.png" width="63" style="plain" id="sOw-0Z-4Ca">
+                                        <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </barButtonItem>
+                                    <barButtonItem image="comment.png" width="63" style="plain" id="wxd-tp-KZN"/>
+                                    <barButtonItem image="back.png" width="63" style="plain" id="hyu-mF-m3C"/>
+                                    <barButtonItem image="forward.png" width="63" style="plain" id="Gqf-yJ-yyw"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="trailing" secondItem="n1H-2b-9fG" secondAttribute="trailing" id="Abd-bQ-sOu"/>
-                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="leading" secondItem="n1H-2b-9fG" secondAttribute="leading" id="G5M-cw-sTz"/>
-                            <constraint firstAttribute="trailing" secondItem="u8o-Y0-Nwa" secondAttribute="trailing" id="W5H-Wx-9ua"/>
-                            <constraint firstItem="ZFk-gM-iOy" firstAttribute="top" secondItem="u8o-Y0-Nwa" secondAttribute="bottom" id="cic-3l-SLV"/>
-                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="d1J-x9-CFt"/>
-                            <constraint firstItem="u8o-Y0-Nwa" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="g74-3J-GAh"/>
-                            <constraint firstItem="ZFk-gM-iOy" firstAttribute="top" secondItem="n1H-2b-9fG" secondAttribute="bottom" id="leQ-DR-FKQ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Q0-dd-G7U"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="customBarButtonItem" destination="HvQ-Tu-bjy" id="Fsu-lF-vHe"/>
+                        <outlet property="customNavigationBar" destination="LuU-cJ-vJn" id="4ot-Ua-eze"/>
                         <outlet property="customToolbar" destination="n1H-2b-9fG" id="0xj-7X-w1H"/>
                         <outlet property="scrollView" destination="u8o-Y0-Nwa" id="tqc-Du-eK0"/>
                         <outlet property="toolbarButton1" destination="sOw-0Z-4Ca" id="CMx-Wi-ddx"/>
