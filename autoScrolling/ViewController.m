@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "UIScrollView+UIScrollViewScrollingDirection.h"
+#import "MKNumberBadgeView.h"
+
 
 #define MENUOPENDURATION 0.3
 #define MENUCLOSEDURATION 0.2
@@ -41,22 +43,29 @@
     
     //Navigation Bar Custom Button
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 124, 44)];
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button1 setFrame:CGRectMake(4, 4, 36, 36)];
     [button1 setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
     [button1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    
     [container addSubview:button1];
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeSystem];
+    
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setFrame:CGRectMake(44, 0, 80, 44)];
     [button2 setTitle:@"모션스크롤" forState:UIControlStateNormal];
+    [button2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button2.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [button2 setShowsTouchWhenHighlighted:YES];
     [button2 addTarget:self action:@selector(autoScrolling) forControlEvents:UIControlEventTouchUpInside];
     [container addSubview:button2];
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:container];
     
     [_customBarButtonItem setRightBarButtonItem:item];
-    [_customNavigationBar setTintColor:[UIColor redColor]];
+//    [_customNavigationBar setTintColor:[UIColor redColor]];
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0){
+        [_customNavigationBar setBackgroundColor:[UIColor whiteColor]];
+        [_customNavigationBar setTintColor:[UIColor whiteColor]];
+    }
     if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)[_customNavigationBar setFrame:CGRectMake(_customNavigationBar.frame.origin.x, _customNavigationBar.frame.origin.y, _customNavigationBar.frame.size.width, _customNavigationBar.frame.size.height+20)];
 
     //navigationBar Setting
@@ -64,25 +73,33 @@
     
     
     //toolbar Button
-    UIButton *toolBarbutton1 = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *toolBarbutton1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [toolBarbutton1 setFrame:CGRectMake(4, 4, 36, 36)];
     [toolBarbutton1 setImage:[UIImage imageNamed:@"collection.png"] forState:UIControlStateNormal];
     [toolBarbutton1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *myButton1=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton1];
-    
-    UIButton *toolBarbutton2 = [UIButton buttonWithType:UIButtonTypeSystem];
+
+    MKNumberBadgeView *isnumber = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(10, -5, 38,20)];
+    isnumber.value = 128;
+    isnumber.fillColor = [UIColor purpleColor];
+    isnumber.hideWhenZero = YES;
+    isnumber.shadow = NO;
+    isnumber.shine = NO;
+    isnumber.alignment = NSTextAlignmentCenter;
+    UIButton *toolBarbutton2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [toolBarbutton2 setFrame:CGRectMake(44, 4, 36, 36)];
     [toolBarbutton2 setImage:[UIImage imageNamed:@"comment.png"] forState:UIControlStateNormal];
-    [toolBarbutton2 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [toolBarbutton2 addTarget:self action:@selector(toolbarButton1Action) forControlEvents:UIControlEventTouchUpInside];
+    [toolBarbutton2 addSubview: isnumber];
     UIBarButtonItem *myButton2=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton2];
     
-    UIButton *toolBarbutton3 = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *toolBarbutton3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [toolBarbutton3 setFrame:CGRectMake(84, 4, 36, 36)];
     [toolBarbutton3 setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [toolBarbutton3 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *myButton3=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton3];
     
-    UIButton *toolBarbutton4 = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *toolBarbutton4 = [UIButton buttonWithType:UIButtonTypeCustom];
     [toolBarbutton4 setFrame:CGRectMake(124, 4, 36, 36)];
     [toolBarbutton4 setImage:[UIImage imageNamed:@"forward.png"] forState:UIControlStateNormal];
     [toolBarbutton4 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
@@ -91,7 +108,10 @@
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
     [_customToolbar setItems:[NSArray arrayWithObjects:flexibleSpace,myButton1,flexibleSpace,myButton2,flexibleSpace,myButton3,flexibleSpace,myButton4,flexibleSpace, nil] animated:NO];
-    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0){
+        [_customToolbar setBackgroundColor:[UIColor whiteColor]];
+        [_customToolbar setTintColor:[UIColor whiteColor]];
+    }
 
     
     //TapGesture event 설정하기

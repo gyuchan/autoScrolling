@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41086EAF1862845C00DD0B34 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41086EAE1862845C00DD0B34 /* MKNumberBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		410A288318612F0B00A287E4 /* collection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A288218612F0B00A287E4 /* collection@2x.png */; };
 		410A28851861303500A287E4 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A28841861303500A287E4 /* comment@2x.png */; };
 		410A28871861371D00A287E4 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410A28861861371D00A287E4 /* forward@2x.png */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41086EAD1862845C00DD0B34 /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKNumberBadgeView.h; path = NumberBadge/MKNumberBadgeView.h; sourceTree = "<group>"; };
+		41086EAE1862845C00DD0B34 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKNumberBadgeView.m; path = NumberBadge/MKNumberBadgeView.m; sourceTree = "<group>"; };
 		410A288218612F0B00A287E4 /* collection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collection@2x.png"; path = "autoScrolling/image/collection@2x.png"; sourceTree = "<group>"; };
 		410A28841861303500A287E4 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "comment@2x.png"; path = "autoScrolling/image/comment@2x.png"; sourceTree = "<group>"; };
 		410A28861861371D00A287E4 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forward@2x.png"; path = "autoScrolling/image/forward@2x.png"; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41086EAC1862843A00DD0B34 /* MKNumberBadge */ = {
+			isa = PBXGroup;
+			children = (
+				41086EAD1862845C00DD0B34 /* MKNumberBadgeView.h */,
+				41086EAE1862845C00DD0B34 /* MKNumberBadgeView.m */,
+			);
+			name = MKNumberBadge;
+			sourceTree = "<group>";
+		};
 		411D37C018569473000F0B31 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +150,7 @@
 		411D37D218569473000F0B31 /* autoScrolling */ = {
 			isa = PBXGroup;
 			children = (
+				41086EAC1862843A00DD0B34 /* MKNumberBadge */,
 				4121A0E21860315100211654 /* ScrollViewDirection */,
 				411D37DB18569473000F0B31 /* AppDelegate.h */,
 				411D37DC18569473000F0B31 /* AppDelegate.m */,
@@ -313,6 +326,7 @@
 				411D37E318569473000F0B31 /* ViewController.m in Sources */,
 				4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
 				411D37DD18569473000F0B31 /* AppDelegate.m in Sources */,
+				41086EAF1862845C00DD0B34 /* MKNumberBadgeView.m in Sources */,
 				411D37D918569473000F0B31 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,7 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "autoScrolling/autoScrolling-Prefix.pch";
 				INFOPLIST_FILE = "autoScrolling/autoScrolling-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -457,7 +471,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "autoScrolling/autoScrolling-Prefix.pch";
 				INFOPLIST_FILE = "autoScrolling/autoScrolling-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -23,7 +23,6 @@
                             <navigationBar contentMode="scaleToFill" id="LuU-cJ-vJn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="HvQ-Tu-bjy"/>
                                 </items>
