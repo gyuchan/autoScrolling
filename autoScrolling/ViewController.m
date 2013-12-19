@@ -20,7 +20,6 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (weak, nonatomic) IBOutlet UIToolbar *customToolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *toolbarButton1;
 @property (nonatomic, retain) IBOutlet UINavigationBar *customNavigationBar;
 @property (nonatomic, retain) IBOutlet UINavigationItem *customBarButtonItem;
 
@@ -34,18 +33,21 @@
     naviShow = true;
     autoScroll = false;
     
-    self.edgesForExtendedLayout=UIRectEdgeNone;
-    self.extendedLayoutIncludesOpaqueBars=NO;
-    self.automaticallyAdjustsScrollViewInsets=NO;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+//    UIBarButtonItem *button1 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"musicOff.png"] style:UIBarButtonItemStylePlain target:self action:nil];
+//    UIBarButtonItem *button2 = [[UIBarButtonItem alloc]initWithTitle:@"모션스크롤" style:UIBarButtonItemStylePlain target:self action:@selector(autoScrolling)];
+//    [_customBarButtonItem setRightBarButtonItems:@[button2,button1]];
     
     //Navigation Bar Custom Button
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 124, 44)];
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
     [button1 setFrame:CGRectMake(4, 4, 36, 36)];
     [button1 setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
     [button1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    
     [container addSubview:button1];
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeSystem];
     [button2 setFrame:CGRectMake(44, 0, 80, 44)];
     [button2 setTitle:@"모션스크롤" forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(autoScrolling) forControlEvents:UIControlEventTouchUpInside];
@@ -54,16 +56,42 @@
     
     [_customBarButtonItem setRightBarButtonItem:item];
     [_customNavigationBar setTintColor:[UIColor redColor]];
-    [_customNavigationBar setFrame:CGRectMake(_customNavigationBar.frame.origin.x, _customNavigationBar.frame.origin.y, _customNavigationBar.frame.size.width, _customNavigationBar.frame.size.height+20)];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)[_customNavigationBar setFrame:CGRectMake(_customNavigationBar.frame.origin.x, _customNavigationBar.frame.origin.y, _customNavigationBar.frame.size.width, _customNavigationBar.frame.size.height+20)];
 
     //navigationBar Setting
     [self.navigationController setNavigationBarHidden:YES];
     
     
     //toolbar Button
-//    [_toolbarButton1 setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}
-//                                   forState:UIControlStateNormal];
-    [_toolbarButton1 setAction:@selector(toolbarButton1Action)];
+    UIButton *toolBarbutton1 = [UIButton buttonWithType:UIButtonTypeSystem];
+    [toolBarbutton1 setFrame:CGRectMake(4, 4, 36, 36)];
+    [toolBarbutton1 setImage:[UIImage imageNamed:@"collection.png"] forState:UIControlStateNormal];
+    [toolBarbutton1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *myButton1=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton1];
+    
+    UIButton *toolBarbutton2 = [UIButton buttonWithType:UIButtonTypeSystem];
+    [toolBarbutton2 setFrame:CGRectMake(44, 4, 36, 36)];
+    [toolBarbutton2 setImage:[UIImage imageNamed:@"comment.png"] forState:UIControlStateNormal];
+    [toolBarbutton2 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *myButton2=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton2];
+    
+    UIButton *toolBarbutton3 = [UIButton buttonWithType:UIButtonTypeSystem];
+    [toolBarbutton3 setFrame:CGRectMake(84, 4, 36, 36)];
+    [toolBarbutton3 setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [toolBarbutton3 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *myButton3=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton3];
+    
+    UIButton *toolBarbutton4 = [UIButton buttonWithType:UIButtonTypeSystem];
+    [toolBarbutton4 setFrame:CGRectMake(124, 4, 36, 36)];
+    [toolBarbutton4 setImage:[UIImage imageNamed:@"forward.png"] forState:UIControlStateNormal];
+    [toolBarbutton4 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *myButton4=[[UIBarButtonItem alloc] initWithCustomView:toolBarbutton4];
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    [_customToolbar setItems:[NSArray arrayWithObjects:flexibleSpace,myButton1,flexibleSpace,myButton2,flexibleSpace,myButton3,flexibleSpace,myButton4,flexibleSpace, nil] animated:NO];
+    
 
     
     //TapGesture event 설정하기
@@ -192,8 +220,8 @@
 {
 //    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
     if (show == YES && _customNavigationBar.hidden == YES) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                                withAnimation:UIStatusBarAnimationSlide];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)[[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                                                               withAnimation:UIStatusBarAnimationSlide];
         
         // Move the frame out of sight
         CGRect frame = _customNavigationBar.frame;
@@ -220,8 +248,8 @@
                          }];
     }
     else if (show == NO && _customNavigationBar.hidden == NO) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES
-                                                withAnimation:UIStatusBarAnimationSlide];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)[[UIApplication sharedApplication] setStatusBarHidden:YES
+                                                                                                               withAnimation:UIStatusBarAnimationSlide];
         
         CGRect frame = _customNavigationBar.frame;
         CGRect toolbarFrame = self.customToolbar.frame;
