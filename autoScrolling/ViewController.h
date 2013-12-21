@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
-
+#import "AudioPlayer.h"
 
 @interface ViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate,UIGestureRecognizerDelegate>
 

@@ -18,10 +18,14 @@
     BOOL autoScroll;
     BOOL naviShow;
     CGSize webtoonSize;
+    
+    BOOL audioPlayCheck;
+    AudioPlayer* audioPlayer;
 }
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (weak, nonatomic) IBOutlet UIToolbar *customToolbar;
+@property (weak, nonatomic) IBOutlet UIButton *audioPlayButton;
 @property (nonatomic, retain) IBOutlet UINavigationBar *customNavigationBar;
 @property (nonatomic, retain) IBOutlet UINavigationItem *customBarButtonItem;
 
@@ -43,24 +47,34 @@
     
     //Navigation Bar Custom Button
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 124, 44)];
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button1 setFrame:CGRectMake(4, 4, 36, 36)];
-    [button1 setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
-    [button1 addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    [container addSubview:button1];
+    _audioPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_audioPlayButton setFrame:CGRectMake(4, 4, 36, 36)];
+    [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+    [_audioPlayButton addTarget:self action:@selector(playFromHTTPButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [_audioPlayButton setShowsTouchWhenHighlighted:YES];
+    [container addSubview:_audioPlayButton];
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button2 setFrame:CGRectMake(44, 0, 80, 44)];
     [button2 setTitle:@"모션스크롤" forState:UIControlStateNormal];
     [button2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button2.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [button2 setShowsTouchWhenHighlighted:YES];
     [button2 addTarget:self action:@selector(autoScrolling) forControlEvents:UIControlEventTouchUpInside];
     [container addSubview:button2];
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:container];
     
     [_customBarButtonItem setRightBarButtonItem:item];
-//    [_customNavigationBar setTintColor:[UIColor redColor]];
+    [_customNavigationBar setTintColor:[UIColor redColor]];
+    
+    UIView *navigationLeftContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *leftButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton1 setFrame:CGRectMake(0, 4, 25, 25)];
+    [leftButton1 setImage:[UIImage imageNamed:@"backbutton.png"] forState:UIControlStateNormal];
+    [leftButton1 addTarget:self action:@selector(Back) forControlEvents:UIControlEventTouchUpInside];
+    [navigationLeftContainer addSubview:leftButton1];
+    UIBarButtonItem* item2 = [[UIBarButtonItem alloc] initWithCustomView:leftButton1];
+    [_customBarButtonItem setLeftBarButtonItem:item2];
+    
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0){
         [_customNavigationBar setBackgroundColor:[UIColor whiteColor]];
@@ -113,7 +127,6 @@
         [_customToolbar setTintColor:[UIColor whiteColor]];
     }
 
-    
     //TapGesture event 설정하기
     UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(handleSingleTap:)];
@@ -135,13 +148,24 @@
     [_webToonImageView setContentMode:UIViewContentModeScaleAspectFit];
     
     //웹툰의 원본 이미지사이즈 크기를 device에 width에 맞춰 리사이징값 구하기.
-    [_scrollView setFrame:CGRectMake(0.0, 0.0, screenWidth, screenheight)];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0){
+        if([[UIApplication sharedApplication]statusBarFrame].size.height>20){
+            NSLog(@"%f",[[UIApplication sharedApplication]statusBarFrame].size.height);
+            [_scrollView setFrame:CGRectMake(0.0, 0.0, screenWidth, screenheight-[[UIApplication sharedApplication]statusBarFrame].size.height+20)];
+        }else{
+           [_scrollView setFrame:CGRectMake(0.0, 0.0, screenWidth, screenheight)];
+        }
+    }
+    else [_scrollView setFrame:CGRectMake(0.0, 0.0, screenWidth, screenheight-20)];
     [_scrollView setContentSize:webtoonSize];
     [_scrollView addSubview:_webToonImageView];
     [_scrollView setDecelerationRate:0.01];
     [_scrollView setScrollEnabled:YES];
     [_scrollView setDelegate:self];
     
+    //audioPlayer 초기화하기
+    audioPlayer = [[AudioPlayer alloc] init];
+    audioPlayCheck = false;
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -330,5 +354,31 @@
 
 - (void)toolbarButton1Action{
     NSLog(@"1");
+}
+
+- (void)Back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - audioPlayer
+-(void) playFromHTTPButtonTouched
+{
+    if(!audioPlayCheck){
+        //startPlay
+        audioPlayCheck = true;
+        NSURL* url = [NSURL URLWithString:@"http://api.soundcloud.com/tracks/103229681/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"];
+        [audioPlayer setDataSource:[audioPlayer dataSourceFromURL:url] withQueueItemId:url];
+        [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
+    }else{
+        if (audioPlayer.state == AudioPlayerStatePaused){
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
+            [audioPlayer resume];
+        }
+        else {
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+            [audioPlayer pause];
+        }
+    }
+
 }
 @end

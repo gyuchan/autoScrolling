@@ -33,6 +33,15 @@
 		411D38051856B1BC000F0B31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D38041856B1BC000F0B31 /* CoreMotion.framework */; };
 		4121A0E1185FEE0A00211654 /* scrollButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4121A0E0185FEE0A00211654 /* scrollButton@2x.png */; };
 		4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */; };
+		41C652F6186546E7009CC9AF /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652E9186546E7009CC9AF /* AudioPlayer.m */; };
+		41C652F7186546E7009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */; };
+		41C652F8186546E7009CC9AF /* CoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */; };
+		41C652F9186546E7009CC9AF /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652EF186546E7009CC9AF /* DataSource.m */; };
+		41C652FA186546E7009CC9AF /* DataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F1186546E7009CC9AF /* DataSourceWrapper.m */; };
+		41C652FB186546E7009CC9AF /* HttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F3186546E7009CC9AF /* HttpDataSource.m */; };
+		41C652FC186546E7009CC9AF /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F5186546E7009CC9AF /* LocalFileDataSource.m */; };
+		41C9F7ED1862E7F70067FE87 /* Root2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C9F7EC1862E7F70067FE87 /* Root2ViewController.m */; };
+		41C9F7EF1862ECEF0067FE87 /* backbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C9F7EE1862ECEF0067FE87 /* backbutton@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +88,23 @@
 		4121A0E0185FEE0A00211654 /* scrollButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scrollButton@2x.png"; path = "autoScrolling/image/scrollButton@2x.png"; sourceTree = "<group>"; };
 		4121A0E31860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+UIScrollViewScrollingDirection.h"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.h"; sourceTree = "<group>"; };
 		4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+UIScrollViewScrollingDirection.m"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.m"; sourceTree = "<group>"; };
+		41C652E8186546E7009CC9AF /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		41C652E9186546E7009CC9AF /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		41C652EA186546E7009CC9AF /* AutoRecoveringHttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRecoveringHttpDataSource.h; sourceTree = "<group>"; };
+		41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRecoveringHttpDataSource.m; sourceTree = "<group>"; };
+		41C652EC186546E7009CC9AF /* CoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreFoundationDataSource.h; sourceTree = "<group>"; };
+		41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreFoundationDataSource.m; sourceTree = "<group>"; };
+		41C652EE186546E7009CC9AF /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		41C652EF186546E7009CC9AF /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		41C652F0186546E7009CC9AF /* DataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceWrapper.h; sourceTree = "<group>"; };
+		41C652F1186546E7009CC9AF /* DataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceWrapper.m; sourceTree = "<group>"; };
+		41C652F2186546E7009CC9AF /* HttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDataSource.h; sourceTree = "<group>"; };
+		41C652F3186546E7009CC9AF /* HttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDataSource.m; sourceTree = "<group>"; };
+		41C652F4186546E7009CC9AF /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileDataSource.h; sourceTree = "<group>"; };
+		41C652F5186546E7009CC9AF /* LocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileDataSource.m; sourceTree = "<group>"; };
+		41C9F7EB1862E7F70067FE87 /* Root2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Root2ViewController.h; sourceTree = "<group>"; };
+		41C9F7EC1862E7F70067FE87 /* Root2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Root2ViewController.m; sourceTree = "<group>"; };
+		41C9F7EE1862ECEF0067FE87 /* backbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backbutton@2x.png"; path = "autoScrolling/image/backbutton@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +176,7 @@
 		411D37D218569473000F0B31 /* autoScrolling */ = {
 			isa = PBXGroup;
 			children = (
+				41C652E7186546E7009CC9AF /* AudioPlayer */,
 				41086EAC1862843A00DD0B34 /* MKNumberBadge */,
 				4121A0E21860315100211654 /* ScrollViewDirection */,
 				411D37DB18569473000F0B31 /* AppDelegate.h */,
@@ -157,6 +184,8 @@
 				411D37DE18569473000F0B31 /* Main.storyboard */,
 				411D37E118569473000F0B31 /* ViewController.h */,
 				411D37E218569473000F0B31 /* ViewController.m */,
+				41C9F7EB1862E7F70067FE87 /* Root2ViewController.h */,
+				41C9F7EC1862E7F70067FE87 /* Root2ViewController.m */,
 				411D37E418569473000F0B31 /* Images.xcassets */,
 				411D37D318569473000F0B31 /* Supporting Files */,
 			);
@@ -195,6 +224,7 @@
 		411D3801185694FB000F0B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				41C9F7EE1862ECEF0067FE87 /* backbutton@2x.png */,
 				410A288C1861422000A287E4 /* musicOff@2x.png */,
 				410A288D1861422000A287E4 /* musicOn@2x.png */,
 				410A288A1861395D00A287E4 /* music@2x.png */,
@@ -215,6 +245,27 @@
 				4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */,
 			);
 			name = ScrollViewDirection;
+			sourceTree = "<group>";
+		};
+		41C652E7186546E7009CC9AF /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				41C652E8186546E7009CC9AF /* AudioPlayer.h */,
+				41C652E9186546E7009CC9AF /* AudioPlayer.m */,
+				41C652EA186546E7009CC9AF /* AutoRecoveringHttpDataSource.h */,
+				41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */,
+				41C652EC186546E7009CC9AF /* CoreFoundationDataSource.h */,
+				41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */,
+				41C652EE186546E7009CC9AF /* DataSource.h */,
+				41C652EF186546E7009CC9AF /* DataSource.m */,
+				41C652F0186546E7009CC9AF /* DataSourceWrapper.h */,
+				41C652F1186546E7009CC9AF /* DataSourceWrapper.m */,
+				41C652F2186546E7009CC9AF /* HttpDataSource.h */,
+				41C652F3186546E7009CC9AF /* HttpDataSource.m */,
+				41C652F4186546E7009CC9AF /* LocalFileDataSource.h */,
+				41C652F5186546E7009CC9AF /* LocalFileDataSource.m */,
+			);
+			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +351,7 @@
 				410A288B1861395D00A287E4 /* music@2x.png in Resources */,
 				410A288F1861422000A287E4 /* musicOn@2x.png in Resources */,
 				411D37E518569473000F0B31 /* Images.xcassets in Resources */,
+				41C9F7EF1862ECEF0067FE87 /* backbutton@2x.png in Resources */,
 				410A2889186137DD00A287E4 /* back@2x.png in Resources */,
 				411D37D718569473000F0B31 /* InfoPlist.strings in Resources */,
 				410A288E1861422000A287E4 /* musicOff@2x.png in Resources */,
@@ -323,8 +375,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41C652F8186546E7009CC9AF /* CoreFoundationDataSource.m in Sources */,
 				411D37E318569473000F0B31 /* ViewController.m in Sources */,
+				41C652FB186546E7009CC9AF /* HttpDataSource.m in Sources */,
+				41C652F7186546E7009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */,
 				4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
+				41C652FA186546E7009CC9AF /* DataSourceWrapper.m in Sources */,
+				41C652F6186546E7009CC9AF /* AudioPlayer.m in Sources */,
+				41C9F7ED1862E7F70067FE87 /* Root2ViewController.m in Sources */,
+				41C652F9186546E7009CC9AF /* DataSource.m in Sources */,
+				41C652FC186546E7009CC9AF /* LocalFileDataSource.m in Sources */,
 				411D37DD18569473000F0B31 /* AppDelegate.m in Sources */,
 				41086EAF1862845C00DD0B34 /* MKNumberBadgeView.m in Sources */,
 				411D37D918569473000F0B31 /* main.m in Sources */,
