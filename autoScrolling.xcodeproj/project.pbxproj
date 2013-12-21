@@ -33,13 +33,16 @@
 		411D38051856B1BC000F0B31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411D38041856B1BC000F0B31 /* CoreMotion.framework */; };
 		4121A0E1185FEE0A00211654 /* scrollButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4121A0E0185FEE0A00211654 /* scrollButton@2x.png */; };
 		4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */; };
-		41C652F6186546E7009CC9AF /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652E9186546E7009CC9AF /* AudioPlayer.m */; };
-		41C652F7186546E7009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */; };
-		41C652F8186546E7009CC9AF /* CoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */; };
-		41C652F9186546E7009CC9AF /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652EF186546E7009CC9AF /* DataSource.m */; };
-		41C652FA186546E7009CC9AF /* DataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F1186546E7009CC9AF /* DataSourceWrapper.m */; };
-		41C652FB186546E7009CC9AF /* HttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F3186546E7009CC9AF /* HttpDataSource.m */; };
-		41C652FC186546E7009CC9AF /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652F5186546E7009CC9AF /* LocalFileDataSource.m */; };
+		41C6530418654D78009CC9AF /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C652FF18654D78009CC9AF /* JDStatusBarNotification.m */; };
+		41C6530518654D78009CC9AF /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6530118654D78009CC9AF /* JDStatusBarStyle.m */; };
+		41C6530618654D78009CC9AF /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6530318654D78009CC9AF /* JDStatusBarView.m */; };
+		41C6534F18656405009CC9AF /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534318656405009CC9AF /* AudioPlayer.m */; };
+		41C6535018656405009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534518656405009CC9AF /* AutoRecoveringHttpDataSource.m */; };
+		41C6535118656405009CC9AF /* CoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534718656405009CC9AF /* CoreFoundationDataSource.m */; };
+		41C6535218656405009CC9AF /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534918656405009CC9AF /* DataSource.m */; };
+		41C6535318656405009CC9AF /* DataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534A18656405009CC9AF /* DataSourceWrapper.m */; };
+		41C6535418656405009CC9AF /* HttpDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534C18656405009CC9AF /* HttpDataSource.m */; };
+		41C6535518656405009CC9AF /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6534E18656405009CC9AF /* LocalFileDataSource.m */; };
 		41C9F7ED1862E7F70067FE87 /* Root2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C9F7EC1862E7F70067FE87 /* Root2ViewController.m */; };
 		41C9F7EF1862ECEF0067FE87 /* backbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C9F7EE1862ECEF0067FE87 /* backbutton@2x.png */; };
 /* End PBXBuildFile section */
@@ -88,20 +91,25 @@
 		4121A0E0185FEE0A00211654 /* scrollButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scrollButton@2x.png"; path = "autoScrolling/image/scrollButton@2x.png"; sourceTree = "<group>"; };
 		4121A0E31860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+UIScrollViewScrollingDirection.h"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.h"; sourceTree = "<group>"; };
 		4121A0E41860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+UIScrollViewScrollingDirection.m"; path = "ScrollViewDirection/UIScrollView+UIScrollViewScrollingDirection.m"; sourceTree = "<group>"; };
-		41C652E8186546E7009CC9AF /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
-		41C652E9186546E7009CC9AF /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
-		41C652EA186546E7009CC9AF /* AutoRecoveringHttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRecoveringHttpDataSource.h; sourceTree = "<group>"; };
-		41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRecoveringHttpDataSource.m; sourceTree = "<group>"; };
-		41C652EC186546E7009CC9AF /* CoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreFoundationDataSource.h; sourceTree = "<group>"; };
-		41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreFoundationDataSource.m; sourceTree = "<group>"; };
-		41C652EE186546E7009CC9AF /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
-		41C652EF186546E7009CC9AF /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
-		41C652F0186546E7009CC9AF /* DataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceWrapper.h; sourceTree = "<group>"; };
-		41C652F1186546E7009CC9AF /* DataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceWrapper.m; sourceTree = "<group>"; };
-		41C652F2186546E7009CC9AF /* HttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDataSource.h; sourceTree = "<group>"; };
-		41C652F3186546E7009CC9AF /* HttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDataSource.m; sourceTree = "<group>"; };
-		41C652F4186546E7009CC9AF /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileDataSource.h; sourceTree = "<group>"; };
-		41C652F5186546E7009CC9AF /* LocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileDataSource.m; sourceTree = "<group>"; };
+		41C652FE18654D78009CC9AF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
+		41C652FF18654D78009CC9AF /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
+		41C6530018654D78009CC9AF /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
+		41C6530118654D78009CC9AF /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
+		41C6530218654D78009CC9AF /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
+		41C6530318654D78009CC9AF /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
+		41C6534218656405009CC9AF /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPlayer.h; path = AudioPlayer/AudioPlayer.h; sourceTree = "<group>"; };
+		41C6534318656405009CC9AF /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioPlayer.m; path = AudioPlayer/AudioPlayer.m; sourceTree = "<group>"; };
+		41C6534418656405009CC9AF /* AutoRecoveringHttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoRecoveringHttpDataSource.h; path = AudioPlayer/AutoRecoveringHttpDataSource.h; sourceTree = "<group>"; };
+		41C6534518656405009CC9AF /* AutoRecoveringHttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoRecoveringHttpDataSource.m; path = AudioPlayer/AutoRecoveringHttpDataSource.m; sourceTree = "<group>"; };
+		41C6534618656405009CC9AF /* CoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreFoundationDataSource.h; path = AudioPlayer/CoreFoundationDataSource.h; sourceTree = "<group>"; };
+		41C6534718656405009CC9AF /* CoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreFoundationDataSource.m; path = AudioPlayer/CoreFoundationDataSource.m; sourceTree = "<group>"; };
+		41C6534818656405009CC9AF /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = AudioPlayer/DataSource.h; sourceTree = "<group>"; };
+		41C6534918656405009CC9AF /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = AudioPlayer/DataSource.m; sourceTree = "<group>"; };
+		41C6534A18656405009CC9AF /* DataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceWrapper.m; path = AudioPlayer/DataSourceWrapper.m; sourceTree = "<group>"; };
+		41C6534B18656405009CC9AF /* HttpDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpDataSource.h; path = AudioPlayer/HttpDataSource.h; sourceTree = "<group>"; };
+		41C6534C18656405009CC9AF /* HttpDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpDataSource.m; path = AudioPlayer/HttpDataSource.m; sourceTree = "<group>"; };
+		41C6534D18656405009CC9AF /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalFileDataSource.h; path = AudioPlayer/LocalFileDataSource.h; sourceTree = "<group>"; };
+		41C6534E18656405009CC9AF /* LocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalFileDataSource.m; path = AudioPlayer/LocalFileDataSource.m; sourceTree = "<group>"; };
 		41C9F7EB1862E7F70067FE87 /* Root2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Root2ViewController.h; sourceTree = "<group>"; };
 		41C9F7EC1862E7F70067FE87 /* Root2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Root2ViewController.m; sourceTree = "<group>"; };
 		41C9F7EE1862ECEF0067FE87 /* backbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backbutton@2x.png"; path = "autoScrolling/image/backbutton@2x.png"; sourceTree = "<group>"; };
@@ -176,7 +184,8 @@
 		411D37D218569473000F0B31 /* autoScrolling */ = {
 			isa = PBXGroup;
 			children = (
-				41C652E7186546E7009CC9AF /* AudioPlayer */,
+				41C653071865625C009CC9AF /* AudioPlayer */,
+				41C652FD18654D78009CC9AF /* JDStatusBarNotification */,
 				41086EAC1862843A00DD0B34 /* MKNumberBadge */,
 				4121A0E21860315100211654 /* ScrollViewDirection */,
 				411D37DB18569473000F0B31 /* AppDelegate.h */,
@@ -247,25 +256,37 @@
 			name = ScrollViewDirection;
 			sourceTree = "<group>";
 		};
-		41C652E7186546E7009CC9AF /* AudioPlayer */ = {
+		41C652FD18654D78009CC9AF /* JDStatusBarNotification */ = {
 			isa = PBXGroup;
 			children = (
-				41C652E8186546E7009CC9AF /* AudioPlayer.h */,
-				41C652E9186546E7009CC9AF /* AudioPlayer.m */,
-				41C652EA186546E7009CC9AF /* AutoRecoveringHttpDataSource.h */,
-				41C652EB186546E7009CC9AF /* AutoRecoveringHttpDataSource.m */,
-				41C652EC186546E7009CC9AF /* CoreFoundationDataSource.h */,
-				41C652ED186546E7009CC9AF /* CoreFoundationDataSource.m */,
-				41C652EE186546E7009CC9AF /* DataSource.h */,
-				41C652EF186546E7009CC9AF /* DataSource.m */,
-				41C652F0186546E7009CC9AF /* DataSourceWrapper.h */,
-				41C652F1186546E7009CC9AF /* DataSourceWrapper.m */,
-				41C652F2186546E7009CC9AF /* HttpDataSource.h */,
-				41C652F3186546E7009CC9AF /* HttpDataSource.m */,
-				41C652F4186546E7009CC9AF /* LocalFileDataSource.h */,
-				41C652F5186546E7009CC9AF /* LocalFileDataSource.m */,
+				41C652FE18654D78009CC9AF /* JDStatusBarNotification.h */,
+				41C652FF18654D78009CC9AF /* JDStatusBarNotification.m */,
+				41C6530018654D78009CC9AF /* JDStatusBarStyle.h */,
+				41C6530118654D78009CC9AF /* JDStatusBarStyle.m */,
+				41C6530218654D78009CC9AF /* JDStatusBarView.h */,
+				41C6530318654D78009CC9AF /* JDStatusBarView.m */,
 			);
-			path = AudioPlayer;
+			path = JDStatusBarNotification;
+			sourceTree = "<group>";
+		};
+		41C653071865625C009CC9AF /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				41C6534218656405009CC9AF /* AudioPlayer.h */,
+				41C6534318656405009CC9AF /* AudioPlayer.m */,
+				41C6534418656405009CC9AF /* AutoRecoveringHttpDataSource.h */,
+				41C6534518656405009CC9AF /* AutoRecoveringHttpDataSource.m */,
+				41C6534618656405009CC9AF /* CoreFoundationDataSource.h */,
+				41C6534718656405009CC9AF /* CoreFoundationDataSource.m */,
+				41C6534818656405009CC9AF /* DataSource.h */,
+				41C6534918656405009CC9AF /* DataSource.m */,
+				41C6534A18656405009CC9AF /* DataSourceWrapper.m */,
+				41C6534B18656405009CC9AF /* HttpDataSource.h */,
+				41C6534C18656405009CC9AF /* HttpDataSource.m */,
+				41C6534D18656405009CC9AF /* LocalFileDataSource.h */,
+				41C6534E18656405009CC9AF /* LocalFileDataSource.m */,
+			);
+			name = AudioPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,19 +396,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41C652F8186546E7009CC9AF /* CoreFoundationDataSource.m in Sources */,
+				41C6535118656405009CC9AF /* CoreFoundationDataSource.m in Sources */,
 				411D37E318569473000F0B31 /* ViewController.m in Sources */,
-				41C652FB186546E7009CC9AF /* HttpDataSource.m in Sources */,
-				41C652F7186546E7009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */,
+				41C6530518654D78009CC9AF /* JDStatusBarStyle.m in Sources */,
+				41C6535218656405009CC9AF /* DataSource.m in Sources */,
 				4121A0E51860317800211654 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
-				41C652FA186546E7009CC9AF /* DataSourceWrapper.m in Sources */,
-				41C652F6186546E7009CC9AF /* AudioPlayer.m in Sources */,
 				41C9F7ED1862E7F70067FE87 /* Root2ViewController.m in Sources */,
-				41C652F9186546E7009CC9AF /* DataSource.m in Sources */,
-				41C652FC186546E7009CC9AF /* LocalFileDataSource.m in Sources */,
+				41C6535518656405009CC9AF /* LocalFileDataSource.m in Sources */,
+				41C6530418654D78009CC9AF /* JDStatusBarNotification.m in Sources */,
 				411D37DD18569473000F0B31 /* AppDelegate.m in Sources */,
+				41C6535418656405009CC9AF /* HttpDataSource.m in Sources */,
+				41C6535318656405009CC9AF /* DataSourceWrapper.m in Sources */,
 				41086EAF1862845C00DD0B34 /* MKNumberBadgeView.m in Sources */,
+				41C6534F18656405009CC9AF /* AudioPlayer.m in Sources */,
+				41C6530618654D78009CC9AF /* JDStatusBarView.m in Sources */,
 				411D37D918569473000F0B31 /* main.m in Sources */,
+				41C6535018656405009CC9AF /* AutoRecoveringHttpDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

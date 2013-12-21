@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "UIScrollView+UIScrollViewScrollingDirection.h"
 #import "MKNumberBadgeView.h"
-
+#import "JDStatusBarNotification.h"
 
 #define MENUOPENDURATION 0.3
 #define MENUCLOSEDURATION 0.2
@@ -21,6 +21,7 @@
     
     BOOL audioPlayCheck;
     AudioPlayer* audioPlayer;
+    NSURL* audioURL;
 }
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
@@ -28,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *audioPlayButton;
 @property (nonatomic, retain) IBOutlet UINavigationBar *customNavigationBar;
 @property (nonatomic, retain) IBOutlet UINavigationItem *customBarButtonItem;
+
+@property (nonatomic, assign) CGFloat progress;
+@property (nonatomic, weak) NSTimer *timer;
 
 @end
 
@@ -165,7 +169,25 @@
     
     //audioPlayer 초기화하기
     audioPlayer = [[AudioPlayer alloc] init];
+    audioPlayer.delegate = self;
+    audioPlayer.
     audioPlayCheck = false;
+    audioURL = [NSURL URLWithString:@"http://api.soundcloud.com/tracks/125326092/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"];
+//    audioURL = [NSURL URLWithString:@"https://blob.baas.io/ceffba5f-3514-11e2-a2c1-02003a570010/d31a99ec-3514-11e2-a2c1-02003a570010/files/2826373f-69ef-11e3-ae3e-06ebb80000ba"];
+    
+    
+    //StatusBarNotification 초기화하기
+    [JDStatusBarNotification addStyleNamed:@"style1"
+                                   prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                                       style.barColor = [UIColor darkGrayColor];
+                                       style.textColor = [UIColor whiteColor];
+                                       style.animationType = JDStatusBarAnimationTypeMove;
+                                       style.progressBarColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
+                                       style.progressBarHeight = 3.0;
+                                       return style;
+                                   }];
+    _progress = 0.0;
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -366,19 +388,90 @@
     if(!audioPlayCheck){
         //startPlay
         audioPlayCheck = true;
-        NSURL* url = [NSURL URLWithString:@"http://api.soundcloud.com/tracks/103229681/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"];
-        [audioPlayer setDataSource:[audioPlayer dataSourceFromURL:url] withQueueItemId:url];
+        [audioPlayer setDataSource:[audioPlayer dataSourceFromURL:audioURL] withQueueItemId:audioURL];
         [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
+        [JDStatusBarNotification showWithStatus:@"배경음악 재생중입니다..." styleName:@"style1"];
     }else{
         if (audioPlayer.state == AudioPlayerStatePaused){
             [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
             [audioPlayer resume];
+            [JDStatusBarNotification showWithStatus:@"배경음악 재생중입니다..." styleName:@"style1"];
         }
         else {
             [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
             [audioPlayer pause];
+            [JDStatusBarNotification dismiss];
         }
     }
-
+    [self progressSetting];
 }
+
+- (void)progressSetting
+{
+    NSLog(@"1_progress : %f",_progress);
+    
+    if (!audioPlayer || audioPlayer.state == AudioPlayerStatePaused)
+	{
+        return;
+	}
+    
+    _progress = audioPlayer.progress/audioPlayer.duration;
+    
+    NSLog(@"2_progress : %f",_progress);
+
+    
+    [JDStatusBarNotification showProgress:_progress];
+    [self.timer invalidate];
+    self.timer = nil;
+    if (_progress) {
+        CGFloat step = 0.1;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:step target:self
+                                                    selector:@selector(progressSetting)
+                                                    userInfo:nil repeats:NO];
+    } else {
+        [self performSelector:@selector(hideProgress)
+                   withObject:nil afterDelay:0.5];
+    }
+}
+
+- (void)hideProgress;
+{
+    [JDStatusBarNotification showProgress:0.0];
+}
+
+-(void) audioPlayer:(AudioPlayer*)audioPlayer stateChanged:(AudioPlayerState)state
+{
+    NSLog(@"이벤트1");
+    [self progressSetting];
+}
+
+-(void) audioPlayer:(AudioPlayer*)audioPlayer didEncounterError:(AudioPlayerErrorCode)errorCode
+{
+	NSLog(@"이벤트2");
+}
+
+-(void) audioPlayer:(AudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
+{
+	NSLog(@"이벤트3");
+    [self progressSetting];
+}
+
+-(void) audioPlayer:(AudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
+{
+	NSLog(@"이벤트4");
+}
+
+-(void) audioPlayer:(AudioPlayer*)_audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(AudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
+{
+    NSLog(@"이벤트5");
+//    [audioPlayer seekToTime:0.000000];
+//    [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+//	[_audioPlayer pause];
+//    [JDStatusBarNotification dismiss];
+//    [_audioPlayer setDataSource:[audioPlayer dataSourceFromURL:audioURL] withQueueItemId:audioURL];
+    [self progressSetting];
+}
+
+
+
 @end
