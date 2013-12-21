@@ -124,7 +124,7 @@
     
     NSString* numberString = [[NSString alloc]init];
     if(self.value>999) numberString = [NSString stringWithFormat:@"999+"];
-	else numberString = [NSString stringWithFormat:@"%d",self.value];	
+	else numberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.value];
 	
 	CGSize numberSize = [numberString sizeWithFont:self.font];
 		
@@ -284,7 +284,7 @@
 {
     NSString* numberString = [[NSString alloc]init];
     if(self.value>999) numberString = [NSString stringWithFormat:@"999+"];
-	else numberString = [NSString stringWithFormat:@"%d",self.value];
+	else numberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.value];
 	
 	
 	CGSize numberSize = [numberString sizeWithAttributes:@{NSFontAttributeName:self.font}];

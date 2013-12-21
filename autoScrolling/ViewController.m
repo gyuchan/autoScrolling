@@ -11,8 +11,26 @@
 #import "MKNumberBadgeView.h"
 #import "JDStatusBarNotification.h"
 
+#import "DOUAudioStreamer.h"
+#import "DOUAudioStreamer+Options.h"
+
 #define MENUOPENDURATION 0.3
 #define MENUCLOSEDURATION 0.2
+
+static void *kStatusKVOKey = &kStatusKVOKey;
+static void *kDurationKVOKey = &kDurationKVOKey;
+static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
+
+@interface Track : NSObject <DOUAudioFile>
+@property (nonatomic, strong) NSURL *url;
+@end
+
+@implementation Track
+- (NSURL *)audioFileURL
+{
+    return [self url];
+}
+@end
 
 @interface ViewController (){
     BOOL autoScroll;
@@ -20,7 +38,7 @@
     CGSize webtoonSize;
     
     BOOL audioPlayCheck;
-    AudioPlayer* audioPlayer;
+    DOUAudioStreamer *audioStreamer;
     NSURL* audioURL;
 }
 
@@ -167,13 +185,17 @@
     [_scrollView setScrollEnabled:YES];
     [_scrollView setDelegate:self];
     
+    
+    
+    
     //audioPlayer 초기화하기
-    audioPlayer = [[AudioPlayer alloc] init];
-    audioPlayer.delegate = self;
-    audioPlayer.
+    
+//    audioURL = [NSURL URLWithString:@"http://api.soundcloud.com/tracks/125326092/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"];
+    audioURL = [NSURL URLWithString:@"https://blob.baas.io/ceffba5f-3514-11e2-a2c1-02003a570010/d31a99ec-3514-11e2-a2c1-02003a570010/files/5f8d42c8-6a39-11e3-ae3e-06ebb80000ba"];
+    [self _resetStreamer];
+    [DOUAudioStreamer setOptions:[DOUAudioStreamer options] | DOUAudioStreamerRequireSHA256];
     audioPlayCheck = false;
-    audioURL = [NSURL URLWithString:@"http://api.soundcloud.com/tracks/125326092/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"];
-//    audioURL = [NSURL URLWithString:@"https://blob.baas.io/ceffba5f-3514-11e2-a2c1-02003a570010/d31a99ec-3514-11e2-a2c1-02003a570010/files/2826373f-69ef-11e3-ae3e-06ebb80000ba"];
+
     
     
     //StatusBarNotification 초기화하기
@@ -379,97 +401,139 @@
 }
 
 - (void)Back{
+    
+    [JDStatusBarNotification dismiss];
+    
+    [audioStreamer stop];
+    [audioStreamer removeObserver:self forKeyPath:@"status"];
+    [audioStreamer removeObserver:self forKeyPath:@"duration"];
+    [audioStreamer removeObserver:self forKeyPath:@"bufferingRatio"];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - audioPlayer
+- (void)_resetStreamer{
+    if (audioStreamer != nil) {
+        [audioStreamer pause];
+        [audioStreamer removeObserver:self forKeyPath:@"status"];
+        [audioStreamer removeObserver:self forKeyPath:@"duration"];
+        [audioStreamer removeObserver:self forKeyPath:@"bufferingRatio"];
+        audioStreamer = nil;
+    }
+
+    Track *track = [[Track alloc] init];
+    [track setUrl:audioURL];
+    audioStreamer = [DOUAudioStreamer streamerWithAudioFile:track];
+    [audioStreamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
+    [audioStreamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
+    [audioStreamer addObserver:self forKeyPath:@"bufferingRatio" options:NSKeyValueObservingOptionNew context:kBufferingRatioKVOKey];
+
+}
+
+
 -(void) playFromHTTPButtonTouched
 {
     if(!audioPlayCheck){
         //startPlay
         audioPlayCheck = true;
-        [audioPlayer setDataSource:[audioPlayer dataSourceFromURL:audioURL] withQueueItemId:audioURL];
-        [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
+        [audioStreamer play];
         [JDStatusBarNotification showWithStatus:@"배경음악 재생중입니다..." styleName:@"style1"];
     }else{
-        if (audioPlayer.state == AudioPlayerStatePaused){
-            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
-            [audioPlayer resume];
+        if (audioStreamer.status == DOUAudioStreamerPaused || audioStreamer.status == DOUAudioStreamerIdle){
+            [audioStreamer play];
             [JDStatusBarNotification showWithStatus:@"배경음악 재생중입니다..." styleName:@"style1"];
         }
         else {
-            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
-            [audioPlayer pause];
+            [audioStreamer pause];
             [JDStatusBarNotification dismiss];
         }
     }
-    [self progressSetting];
+//    [self progressSetting];
 }
 
-- (void)progressSetting
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"1_progress : %f",_progress);
-    
-    if (!audioPlayer || audioPlayer.state == AudioPlayerStatePaused)
-	{
-        return;
-	}
-    
-    _progress = audioPlayer.progress/audioPlayer.duration;
-    
-    NSLog(@"2_progress : %f",_progress);
-
-    
-    [JDStatusBarNotification showProgress:_progress];
-    [self.timer invalidate];
-    self.timer = nil;
-    if (_progress) {
-        CGFloat step = 0.1;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:step target:self
-                                                    selector:@selector(progressSetting)
-                                                    userInfo:nil repeats:NO];
-    } else {
-        [self performSelector:@selector(hideProgress)
-                   withObject:nil afterDelay:0.5];
+    if (context == kStatusKVOKey) {
+        [self performSelector:@selector(_updateStatus)
+                     onThread:[NSThread mainThread]
+                   withObject:nil
+                waitUntilDone:NO];
+    }
+    else if (context == kDurationKVOKey) {
+//        [self performSelector:@selector(_timerAction:)
+//                     onThread:[NSThread mainThread]
+//                   withObject:nil
+//                waitUntilDone:NO];
+    }
+    else if (context == kBufferingRatioKVOKey) {
+//        [self performSelector:@selector(_updateBufferingStatus)
+//                     onThread:[NSThread mainThread]
+//                   withObject:nil
+//                waitUntilDone:NO];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
-- (void)hideProgress;
+- (void)_updateStatus
 {
-    [JDStatusBarNotification showProgress:0.0];
+    switch ([audioStreamer status]) {
+        case DOUAudioStreamerPlaying:
+            NSLog(@"DOUAudioStreamerPlaying");
+            [self _timerAction:nil];
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOn.png"] forState:UIControlStateNormal];
+            break;
+            
+        case DOUAudioStreamerPaused:
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+            NSLog(@"DOUAudioStreamerPaused");
+            break;
+            
+        case DOUAudioStreamerIdle:
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+            NSLog(@"DOUAudioStreamerIdle");
+            break;
+            
+        case DOUAudioStreamerFinished:
+            [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
+            NSLog(@"DOUAudioStreamerFinished");
+            [self actionNext:nil];
+            break;
+            
+        case DOUAudioStreamerBuffering:
+            NSLog(@"DOUAudioStreamerBuffering");
+            break;
+            
+        case DOUAudioStreamerError:
+            NSLog(@"DOUAudioStreamerError");
+            break;
+    }
 }
 
--(void) audioPlayer:(AudioPlayer*)audioPlayer stateChanged:(AudioPlayerState)state
+- (void)_timerAction:(id)timer
 {
-    NSLog(@"이벤트1");
-    [self progressSetting];
+    if(audioStreamer.status == DOUAudioStreamerPaused || audioStreamer.status == DOUAudioStreamerIdle){
+        [JDStatusBarNotification showProgress:0.0];
+        return;
+    }
+    _progress = [audioStreamer currentTime] / [audioStreamer duration];
+//    NSLog(@"_progress : %f",_progress);
+    if ([audioStreamer duration] == 0.0) {
+        [JDStatusBarNotification showProgress:0.0];
+    }
+    else {
+        [JDStatusBarNotification showProgress:_progress];
+        [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(_timerAction:) userInfo:nil repeats:NO];
+    }
 }
 
--(void) audioPlayer:(AudioPlayer*)audioPlayer didEncounterError:(AudioPlayerErrorCode)errorCode
+- (IBAction)actionNext:(id)sender
 {
-	NSLog(@"이벤트2");
-}
-
--(void) audioPlayer:(AudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
-{
-	NSLog(@"이벤트3");
-    [self progressSetting];
-}
-
--(void) audioPlayer:(AudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
-{
-	NSLog(@"이벤트4");
-}
-
--(void) audioPlayer:(AudioPlayer*)_audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(AudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
-{
-    NSLog(@"이벤트5");
-//    [audioPlayer seekToTime:0.000000];
-//    [_audioPlayButton setImage:[UIImage imageNamed:@"musicOff.png"] forState:UIControlStateNormal];
-//	[_audioPlayer pause];
-//    [JDStatusBarNotification dismiss];
-//    [_audioPlayer setDataSource:[audioPlayer dataSourceFromURL:audioURL] withQueueItemId:audioURL];
-    [self progressSetting];
+    NSLog(@"finished play");
+    [audioStreamer stop];
+    [audioStreamer play];
 }
 
 
